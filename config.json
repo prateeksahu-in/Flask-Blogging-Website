@@ -5,6 +5,8 @@
     "local_uri": "mysql://root:@localhost/datafitin",
     "prod_uri": "mysql://root:@localhost/datafitin",
     "github_url": "https://github.com/prateeksahu-in/",
-    "blog_name": "DataFit.in"
+    "blog_name": "DataFit.in",
+    "gmail-user": "null",
+    "gmail-password": "null"
   }
 }
