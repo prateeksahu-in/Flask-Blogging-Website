@@ -43,6 +43,7 @@ class Posts(db.Model):
     slug = db.Column(db.String(100), nullable=False)
     date = db.Column(db.String(20), nullable=True)
     content = db.Column(db.String(120), nullable=False)
+    img_file = db.Column(db.String(120), nullable=True)
 
 
 @app.route("/")
