@@ -9,6 +9,10 @@
     "gmail-user": "null",
     "gmail-password": "null",
     "about_text": "Hello i am prateek sahu",
-    "no_of_posts": 3
+    "no_of_posts": 3,
+    "img_logo": "logo.png",
+    "admin_user": "admin",
+    "admin_password": "123456"
+
   }
 }

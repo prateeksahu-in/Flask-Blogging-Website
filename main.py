@@ -64,6 +64,11 @@ def about():
     return render_template('about.html', params=params)
 
 
+@app.route("/login")
+def dashboard():
+    return render_template('login.html', params=params)
+
+
 @app.route("/contact", methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
