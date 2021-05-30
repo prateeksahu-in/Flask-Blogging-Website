@@ -67,16 +67,17 @@ def about():
 
 @app.route("/login", methods=['GET', 'POST'])
 def dashboard():
-
     if 'user' in session and session['user'] == params['admin_user']:
-        return render_template('dashboard.html', params=params)
+        posts = Posts.query.all()
+        return render_template('dashboard.html', params=params, posts=posts)
 
     if request.method == 'POST':
         username = request.form.get('uname')
         userpass = request.form.get('pass')
-        if username==params['admin_user'] and userpass==params['admin_password']:
+        if username == params['admin_user'] and userpass == params['admin_password']:
             session['user'] = username
-            return render_template('dashboard.html', params=params)
+            posts = Posts.query.all()
+            return render_template('dashboard.html', params=params, posts=posts)
 
     return render_template('login.html', params=params)
 
