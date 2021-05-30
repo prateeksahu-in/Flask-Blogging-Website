@@ -11,6 +11,7 @@ with open('config.json', 'r') as c:
 local_server = True
 
 app: Flask = Flask(__name__)
+app.secret_key = 'super-secret-key'
 app.config.update(
     MAIL_SERVER='smtp.gmail.com',
     MAIL_PORT='465',
@@ -67,15 +68,15 @@ def about():
 @app.route("/login", methods=['GET', 'POST'])
 def dashboard():
 
-    if ('user' in session and session['user'] == params['admin_user']):
-        return render_template('dashboard.html')
+    if 'user' in session and session['user'] == params['admin_user']:
+        return render_template('dashboard.html', params=params)
 
     if request.method == 'POST':
         username = request.form.get('uname')
         userpass = request.form.get('pass')
-        if username==params['admin_username'] and userpass==params['admin_password']:
+        if username==params['admin_user'] and userpass==params['admin_password']:
             session['user'] = username
-            return render_template('dashboard.html')
+            return render_template('dashboard.html', params=params)
 
     return render_template('login.html', params=params)
 
