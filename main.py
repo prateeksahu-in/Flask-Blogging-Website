@@ -1,6 +1,6 @@
 from pickle import GET
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_mail import Mail
@@ -64,8 +64,19 @@ def about():
     return render_template('about.html', params=params)
 
 
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def dashboard():
+
+    if ('user' in session and session['user'] == params['admin_user']):
+        return render_template('dashboard.html')
+
+    if request.method == 'POST':
+        username = request.form.get('uname')
+        userpass = request.form.get('pass')
+        if username==params['admin_username'] and userpass==params['admin_password']:
+            session['user'] = username
+            return render_template('dashboard.html')
+
     return render_template('login.html', params=params)
 
 
