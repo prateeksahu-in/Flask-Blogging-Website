@@ -11,6 +11,7 @@ with open('config.json', 'r') as c:
 local_server = True
 
 app: Flask = Flask(__name__)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.secret_key = 'super-secret-key'
 app.config.update(
     MAIL_SERVER='smtp.gmail.com',
@@ -58,6 +59,23 @@ def home():
 def post_route(post_slug):
     posts = Posts.query.filter_by(slug=post_slug).first()
     return render_template('post.html', params=params, post=posts)
+
+
+@app.route("/edit/<string:id>", methods=['GET'])
+def edit(id):
+    if 'user' in session and session['user'] == params['admin_user']:
+        if request.method == 'POST':
+            box_title = request.form.get('title')
+            stitle = request.form.get('stitle')
+            slug = request.form.get('slug')
+            content = request.form.get('content')
+            img_file = request.form.get('img_file')
+
+            if id == '0':
+                post = Posts(title=box_title, slug=slug, content=content, img_file=img_file, subtitle=stitle)
+                db.session.add(post)
+                db.session.commit()
+        return render_template('edit.html', params=params, id=id)
 
 
 @app.route("/about")

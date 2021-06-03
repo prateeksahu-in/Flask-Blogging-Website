@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block body %}
+        <!-- Page Header--><!--
+        <header class="masthead" style="background-image: url('{{url_for('static',filename='assets/img/admin_bg.png')}}')">
+        -->
+<header class="masthead" style="background-color:#121212;')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h2>Admin Panel</h2>
+                            <span class="">Manage your posts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <h1>Add/Edit Posts</h1>
+
+                    <form action="/edit/{{id}}" method="POST">
+                                <div class="form-floating">
+                                    <input class="form-control" id="inputName" name="name" type="text" placeholder="Title" />
+                                    <label for="inputName">Title</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input class="form-control" id="stitle" name="stitle" type="text" placeholder="Subtitle" />
+                                    <label for="stitle">subtitle</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input class="form-control" id="slug" name="slug" type="text" placeholder="Slug" />
+                                    <label for="slug">Slug</label>
+                                </div>
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="content" name="content" placeholder="Content" style="height: 12rem"></textarea>
+                                    <label for="content">Content</label>
+                                </div>
+                               <div class="form-floating">
+                                    <Input class="form-control" id="img_file" name="img_file" placeholder="Input"/>
+                                    <label for="img_file">File</label>
+                                </div>
+                                <br />
+                                <button class="btn btn-primary text-uppercase" type="submit">Send</button>
+                            </form>
+                  </table>
+                </div>
+            </div>
+        </div>
+ {% endblock %}
